@@ -110,7 +110,14 @@ function getLinearEquationRoot(a, b) {
  *   (0,1) (0,1)     => 0
  */
 function getAngleBetweenVectors(x1, y1, x2, y2) {
-  return Math.abs(Math.asin((y1 - y2) / (x1 - x2)));
+  const dot = x1 * x2 + y1 * y2;
+  const magnitude1 = Math.sqrt(x1 * x1 + y1 * y1);
+  const magnitude2 = Math.sqrt(x2 * x2 + y2 * y2);
+  const safeCosineTheta = Math.max(
+    -1,
+    Math.min(1, dot / (magnitude1 * magnitude2))
+  );
+  return Math.acos(safeCosineTheta);
 }
 
 /**
